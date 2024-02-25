@@ -2,17 +2,22 @@ package main
 
 import (
 	"fmt"
+	"math/rand"
 	"os"
+	"strings"
 )
 
-const characters string = "0123456789 abcdefghijklmnopqrstuvwxyz#,.!?:;@$%~&^_-"
+var characters string = "0123456789 ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz#,.!?:;@$%~&^_-"
+var length int = 12
 
 func main() {
+	var password string
 	var choice int
 
 	fmt.Println("Welcome to the password generator")
 
 	for {
+		password = ""
 		displayMenu()
 
 		fmt.Print("Your choice: ")
@@ -20,7 +25,9 @@ func main() {
 
 		switch choice {
 		case 1:
-			// Generate a password
+			password = generatePassword()
+			fmt.Println("-----  Password  -----")
+			fmt.Println(password)
 		case 2:
 			// Customise the password length
 		case 3:
@@ -37,4 +44,15 @@ func displayMenu() {
 	fmt.Println("1. Generate password")
 	fmt.Println("2. Password length")
 	fmt.Println("3. Quit")
+}
+
+func generatePassword() string {
+	var pass string
+	char := strings.Split(characters, "")
+
+	for i := 0; i < length; i++ {
+		pass += char[rand.Intn(len(char))]
+	}
+
+	return pass
 }
