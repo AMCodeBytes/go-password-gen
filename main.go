@@ -29,7 +29,7 @@ func main() {
 			fmt.Println("-----  Password  -----")
 			fmt.Println(password)
 		case 2:
-			// Customise the password length
+			length = updatePasswordLength()
 		case 3:
 			os.Exit(0)
 			return
@@ -55,4 +55,13 @@ func generatePassword() string {
 	}
 
 	return pass
+}
+
+func updatePasswordLength() int {
+	var newLength int
+
+	fmt.Print("New password length: ")
+	fmt.Scan(&newLength)
+
+	return newLength
 }
